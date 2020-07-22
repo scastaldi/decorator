@@ -1,0 +1,2 @@
+# decorator
+Sample typescript decorator
