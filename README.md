@@ -10,12 +10,14 @@ With the introduction of Classes in TypeScript and ES6, there now exist certain 
 tsc --target ES5 --experimentalDecorators
 tsconfig.json:
 
-```{
+```
+{
     "compilerOptions": {
         "target": "ES5",
         "experimentalDecorators": true
     }
-}```
+}
+```
 
 - For more information
 - `https://www.typescriptlang.org/docs/handbook/decorators.html`
