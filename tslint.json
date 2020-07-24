@@ -3,7 +3,14 @@
     "extends": ["tslint:recommended"],
     "jsRules": {},
     "rules": {
+      "quotemark": [true, "single", "avoid-escape", "avoid-template"],
       "no-console": false
     },
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "compilerOptions": {
+      "types": ["reflect-metadata", "jest"],
+       "typeRoots": ["./types", "./node_modules/@types"]
+     },
+     "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
+     "include": ["./**/*.tsx", "./**/*.ts"]
   }

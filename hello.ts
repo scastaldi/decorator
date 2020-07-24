@@ -1,13 +1,11 @@
 export function logMethod(
     target: Object,
     propertyName: string,
-    propertyDesciptor: PropertyDescriptor): PropertyDescriptor {
-    // target === Employee.prototype
-    // propertyName === "greet"
-    // propertyDesciptor === Object.getOwnPropertyDescriptor(Employee.prototype, "greet")
-    const method = propertyDesciptor.value;
+    propertyDescriptor: PropertyDescriptor): PropertyDescriptor {
 
-    propertyDesciptor.value = function (...args: any[]) {
+    const method = propertyDescriptor.value;
+
+    propertyDescriptor.value = function (...args: any[]) {
 
         // convert list of greet arguments to string
         const params = args.map(a => JSON.stringify(a)).join();
@@ -24,26 +22,28 @@ export function logMethod(
         // return the result of invoking the method
         return result;
     }
-    return propertyDesciptor;
+    return propertyDescriptor;
 };
 
 
-function simpleLog(target, propertyKey: string, descriptor: PropertyDescriptor) {
-        console.log(`
-        target:${JSON.stringify(target)}, 
-        propertyKey:${propertyKey}, 
-        descriptor:${JSON.stringify(descriptor)}`);
+// function simpleLog(target, propertyKey: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+//     console.log(`called function:${propertyKey}`);
+//     return null;
+// }
 
-}
+export class SampleLog {
+    // @simpleLog
+    // hello(message: string) {
+    //     return 'Hello from Tampa';
+    // }
 
-
-class SampleLog {
     @logMethod
-    hello(message: string) {
-        return 'return value from the method';
+    helloPlus(message: string) {
+        return 'Hello from Tampa';
     }
 }
 
 const sample = new SampleLog();
-sample.hello('Hi there');
+// sample.hello('Hi there');
+sample.helloPlus('Again')
 
